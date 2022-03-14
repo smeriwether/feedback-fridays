@@ -32,7 +32,7 @@ function TeammateListForm(props) {
       .filter(teammate => !!teammate.name)
       .map(teammate => ({ name: teammate.name, sort: Math.random() }))
       .sort((a, b) => a.sort - b.sort)
-      .map(({ name }) => ({ name }));
+      .map(({ name }) => (name));
 
     props.onSubmit(encodeTeammates(shuffledTeammates));
   }
