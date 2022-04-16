@@ -1,9 +1,13 @@
 <h1 data-attr="title">Feedback Friday!</h1>
 
-<%= form_with url: "" do |form| %>
+<%= form_with url: "", data: { 'controller': 'input-manager' } do |form| %>
   <%= form.label :teammate_1, "Teammate name" %>
   <%= form.text_field :teammate_1, 'data-attr': 'teammate_1' %>
 
   <%= form.label :teammate_2, "Teammate name" %>
   <%= form.text_field :teammate_2, 'data-attr': 'teammate_2' %>
+
+  <button type="button" data-action="click->input-manager#newInput" data-attr="new-teammate">
+    Add another teammate
+  </button>
 <% end %>
