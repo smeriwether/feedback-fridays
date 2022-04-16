@@ -2,17 +2,22 @@
 
 require 'rails_helper'
 
-RSpec.feature 'Navigates to the Home page', type: :feature do
-  scenario 'Sees feedback friday application title' do
+RSpec.describe 'Navigates to the Home page', type: :feature do
+  it 'Sees feedback friday application title' do
     visit '/'
 
     expect(page).to have_selector("[data-attr='title']")
   end
 
-  scenario 'Can add two teammates to the feedback session' do
+  it 'Can add one teammate to the feedback session' do
     visit '/'
 
     expect(page).to have_selector("input[data-attr='teammate_1']")
+  end
+
+  it 'Can add a second teammate to the feedback session' do
+    visit '/'
+
     expect(page).to have_selector("input[data-attr='teammate_2']")
   end
 end
