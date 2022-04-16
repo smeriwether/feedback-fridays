@@ -20,4 +20,15 @@ RSpec.describe 'Navigates to the Home page', type: :feature do
 
     expect(page).to have_selector("input[data-attr='teammate_1']")
   end
+
+  it 'can create a feedback session' do
+    visit '/'
+
+    page.find("[data-attr='teammate_0']").fill_in with: 'Stephen M'
+    page.find("[data-attr='teammate_1']").fill_in with: 'Foo B'
+
+    find("[type='submit']").click
+
+    expect(FeedbackSession.last).not_to be_nil
+  end
 end
