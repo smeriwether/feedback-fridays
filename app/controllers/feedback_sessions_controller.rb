@@ -1,6 +1,12 @@
 # frozen_string_literal: true
 
 class FeedbackSessionsController < ApplicationController
+  def new
+    @feedback_session = FeedbackSession.new
+    @feedback_session.feedback_session_teammates.build
+    @feedback_session.feedback_session_teammates.build
+  end
+
   def create
     FeedbackSession.create(feedback_session_params)
   end

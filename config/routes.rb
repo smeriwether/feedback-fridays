@@ -3,5 +3,5 @@
 Rails.application.routes.draw do
   resources :feedback_sessions
 
-  root 'home#index'
+  root 'feedback_sessions#new'
 end
