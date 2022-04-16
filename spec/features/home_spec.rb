@@ -8,4 +8,11 @@ RSpec.feature 'Navigates to the Home page', type: :feature do
 
     expect(page).to have_selector("[data-attr='title']")
   end
+
+  scenario 'Can add two teammates to the feedback session' do
+    visit '/'
+
+    expect(page).to have_selector("input[data-attr='teammate_1']")
+    expect(page).to have_selector("input[data-attr='teammate_2']")
+  end
 end
