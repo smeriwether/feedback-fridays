@@ -1,13 +1,24 @@
 <h1 data-attr="title">Feedback Friday!</h1>
 
-<%= form_with url: "", data: { 'controller': 'input-manager' } do |form| %>
-  <%= form.label :teammate_1, "Teammate name" %>
-  <%= form.text_field :teammate_1, 'data-attr': 'teammate_1' %>
+<%= form_for @feedback_session do |form| %>
+  <div data-controller="fields-for" data-fields-for-index-value="1">
+    <%= form.fields_for :feedback_session_teammates do |teammate_form| %>
+      <%= render "feedback_session_teammates/fields", teammate_form: teammate_form %>
+    <% end %>
 
-  <%= form.label :teammate_2, "Teammate name" %>
-  <%= form.text_field :teammate_2, 'data-attr': 'teammate_2' %>
+    <%= button_tag(
+      "Add another teammate",
+      {
+        type: "button",
+        data:
+        {
+          attr: "new-teammate",
+          action: "fields-for#add",
+          fields: form.fields_for(:feedback_session_teammates, FeedbackSessionTeammate.new, child_index: "new_field") { |teammate_form| render("feedback_session_teammates/fields", teammate_form: teammate_form) }
+        }
+      }
+    ) %>
+  </div>
 
-  <button type="button" data-action="click->input-manager#newInput" data-attr="new-teammate">
-    Add another teammate
-  </button>
+  <%= form.submit "Create Feedback Session" %>
 <% end %>

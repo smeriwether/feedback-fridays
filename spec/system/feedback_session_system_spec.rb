@@ -8,7 +8,7 @@ RSpec.describe 'Feedback Session System', type: :system do
 
     find("button[data-attr='new-teammate']").click
 
-    expect(page).to have_selector("input[data-attr='teammate_3']")
+    expect(page).to have_selector("input[data-attr='teammate_2']")
   end
 
   it 'Can add a n teammates to the feedback session' do
@@ -17,6 +17,6 @@ RSpec.describe 'Feedback Session System', type: :system do
     find("button[data-attr='new-teammate']").click
     find("button[data-attr='new-teammate']").click
 
-    expect(page).to have_selector("input[data-attr='teammate_4']")
+    expect(page).to have_selector("input[data-attr='teammate_3']")
   end
 end
