@@ -1,19 +1,42 @@
-<h1 data-attr="feedback-lineup">Today's Feedback Lineup</h1>
+<div class="w-full h-full flex justify-center pt-24">
+  <div class="w-1/3">
+    <header>
+      <h1 class="text-3xl font-bold" data-attr="feedback-lineup">Here's the lineup we came up with</h1>
+      <p class="pt-2 text-gray-600">
+        What do you think?
+      </p>
+    </header>
 
-<%= form_for @feedback_lineup do |form| %>
-  <%= form.fields_for :feedback_lineup_groups do |group_form| %>
-    <%= group_form.hidden_field :feedback_giver %>
-    <%= group_form.hidden_field :feedback_receiver %>
-  <% end %>
+    <section class="pt-8">
+      <header>
+        <h2 class="text-2xl font-bold">Today's lineup</h2>
+        <% if @feedback_lineup.feedback_lineup_groups.count > 0 %>
+          <p class="pt-2 text-sm text-gray-600">
+            In case you need help: <%= @feedback_lineup.feedback_lineup_groups.first.feedback_giver %> is giving feedback to <%= @feedback_lineup.feedback_lineup_groups.first.feedback_receiver %>.
+          </p>
+        <% end %>
+      </header>
 
-  <ul>
-    <% @feedback_lineup.feedback_lineup_groups.each do |group| %>
-      <li>
-        <span data-attr="feedback-group-feedback-giver"><%= group.feedback_giver %></span>
-        <span data-attr="feedback-group-feedback-receiver"><%= group.feedback_receiver %></span>
-      </li>
-    <% end %>
-  </ul>
+      <%= form_for @feedback_lineup do |form| %>
+        <%= form.fields_for :feedback_lineup_groups do |group_form| %>
+          <%= group_form.hidden_field :feedback_giver %>
+          <%= group_form.hidden_field :feedback_receiver %>
+        <% end %>
 
-  <%= form.submit "Looks good", data: { attr: 'verify-feedback-lineup' } %>
-<% end %>
+        <ul class="mt-4">
+          <% @feedback_lineup.feedback_lineup_groups.each do |group| %>
+            <li class="mt-4 text-xl">
+              <span data-attr="feedback-group-feedback-giver"><%= group.feedback_giver %></span>
+              <svg xmlns="http://www.w3.org/2000/svg" class="inline ml-2 h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+              <span class="pl-2" data-attr="feedback-group-feedback-receiver"><%= group.feedback_receiver %></span>
+            </li>
+          <% end %>
+        </ul>
+
+        <%= form.submit "Looks good", class: "mt-8 p-2 block w-full bg-indigo-600 text-indigo-50 cursor-pointer hover:bg-indigo-800", data: { attr: 'verify-feedback-lineup' } %>
+      <% end %>
+    </section>
+  </div>
+</div>
