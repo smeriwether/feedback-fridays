@@ -12,6 +12,12 @@
   </head>
 
   <body>
+    <nav class="float-right py-2 px-6">
+      <% unless current_page?(root_path) %>
+        <%= link_to "Start over", root_path, class: "underline", data: { attr: 'start-over-link' } %>
+      <% end %>
+    </nav>
+
     <main>
       <%= yield %>
     </main>
