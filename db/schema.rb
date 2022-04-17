@@ -10,9 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_04_16_205108) do
+ActiveRecord::Schema[7.0].define(version: 2022_04_17_141204) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "feedback_lineup_groups", force: :cascade do |t|
+    t.bigint "feedback_lineup_id"
+    t.string "feedback_giver"
+    t.string "feedback_receiver"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["feedback_lineup_id"], name: "index_feedback_lineup_groups_on_feedback_lineup_id"
+  end
+
+  create_table "feedback_lineups", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "feedback_session_teammates", force: :cascade do |t|
     t.bigint "feedback_session_id"

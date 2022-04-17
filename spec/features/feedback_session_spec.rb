@@ -40,6 +40,6 @@ RSpec.describe 'Navigates to the Home page', type: :feature do
 
     find("[type='submit']").click
 
-    expect(page).to have_current_path(feedback_lineup_path(FeedbackSession.last), ignore_query: true)
+    expect(page).to have_current_path(new_feedback_lineup_path(FeedbackSession.last), ignore_query: true)
   end
 end

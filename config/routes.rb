@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  resources :feedback_lineups, param: :feedback_session_id
+  resources :feedback_lineups, path_names: { new: 'new/:feedback_session_id' }
 
   resources :feedback_sessions
 

@@ -9,7 +9,7 @@ class FeedbackSessionsController < ApplicationController
 
   def create
     feedback_session = FeedbackSession.create(feedback_session_params)
-    redirect_to feedback_lineup_path(feedback_session)
+    redirect_to new_feedback_lineup_path(feedback_session)
   end
 
   private

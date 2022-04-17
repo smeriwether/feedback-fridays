@@ -1,0 +1,11 @@
+<h1 data-attr="feedback-lineup">Today's Feedback Lineup</h1>
+
+<ul>
+  <% @feedback_lineup.feedback_lineup_groups.each do |group| %>
+    <li>
+      <span data-attr="feedback-group-feedback-giver"><%= group.feedback_giver %></span>
+      <span data-attr="feedback-group-feedback-receiver"><%= group.feedback_receiver %></span>
+    </li>
+  <% end %>
+</ul>
+
