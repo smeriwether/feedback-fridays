@@ -22,6 +22,6 @@ class FeedbackLineupsController < ApplicationController
   private
 
   def feedback_lineup_params
-    params.require(:feedback_lineup).permit(feedback_lineup_groups_attributes: [])
+    params.require(:feedback_lineup).permit(feedback_lineup_groups_attributes: %i[feedback_giver feedback_receiver])
   end
 end
