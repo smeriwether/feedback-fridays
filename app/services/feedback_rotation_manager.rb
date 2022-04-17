@@ -14,12 +14,15 @@ class FeedbackRotationManager
 
     sessions_per_rotation = (@feedback_lineup_groups.length / 2).floor
     number_of_rotations = (@feedback_lineup_groups.length / sessions_per_rotation).ceil
-    extra_session_at_the_end = @feedback_lineup_groups.length.odd?
+    extra_session_at_the_end = number_of_rotations != @feedback_lineup_groups.length &&
+                               @feedback_lineup_groups.length.odd?
 
     number_of_cycles = extra_session_at_the_end ? number_of_rotations + 1 : number_of_rotations
 
     rotations = []
     number_of_cycles.times do |idx|
+      next if idx > number_of_rotations
+
       rotation_n = []
       if extra_session_at_the_end && idx == number_of_rotations
         rotation_n = [@feedback_lineup_groups[@feedback_lineup_groups.length - 1]]
