@@ -13,4 +13,14 @@ class FeedbackLineupsController < ApplicationController
       )
     end
   end
+
+  def create
+    FeedbackLineup.create(feedback_lineup_params)
+  end
+
+  private
+
+  def feedback_lineup_params
+    params.require(:feedback_lineup).permit(feedback_lineup_groups_attributes: [])
+  end
 end
