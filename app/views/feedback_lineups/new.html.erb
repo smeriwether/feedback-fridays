@@ -35,6 +35,10 @@
           <% end %>
         </ul>
 
+        <div class="mt-6">
+          <%= link_to "Create a new lineup", new_feedback_lineup_path(@feedback_session), class: "py-1 px-4 border border-gray-400 group hover:bg-gray-600 hover:text-white", data: { attr: 'refresh' } %>
+        </div>
+
         <%= form.submit "Looks good", class: "mt-8 p-2 block w-full bg-indigo-600 text-indigo-50 cursor-pointer hover:bg-indigo-800", data: { attr: 'verify-feedback-lineup' } %>
       <% end %>
     </section>

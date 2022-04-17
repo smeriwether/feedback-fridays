@@ -42,15 +42,7 @@ RSpec.describe 'Navigates to the Feedback Lineup page', type: :feature do
   end
 
   it 'can verify a feedback lineup' do
-    feedback_session = FeedbackSession.create(
-      {
-        feedback_session_teammates_attributes: [
-          { name: 'Example 1' },
-          { name: 'Example 2' },
-          { name: 'Example 3' }
-        ]
-      }
-    )
+    feedback_session = FactoryBot.create(:feedback_session_with_teammates)
     visit "/feedback_lineups/new/#{feedback_session.id}"
 
     find("[data-attr='verify-feedback-lineup']").click
@@ -59,18 +51,18 @@ RSpec.describe 'Navigates to the Feedback Lineup page', type: :feature do
   end
 
   it 'navigates to the feedback rotation screen after verifying the feedback lineup' do
-    feedback_session = FeedbackSession.create(
-      {
-        feedback_session_teammates_attributes: [
-          { name: 'Example 1' },
-          { name: 'Example 2' }
-        ]
-      }
-    )
+    feedback_session = FactoryBot.create(:feedback_session_with_teammates)
     visit "/feedback_lineups/new/#{feedback_session.id}"
 
     find("[data-attr='verify-feedback-lineup']").click
 
     expect(page).to have_current_path(feedback_rotation_path(FeedbackLineup.last), ignore_query: true)
+  end
+
+  it 'can click a refresh button to refresh the page to load a new lineup' do
+    feedback_session = FactoryBot.create(:feedback_session_with_teammates)
+    visit "/feedback_lineups/new/#{feedback_session.id}"
+
+    expect(page).to have_selector("[data-attr='refresh']")
   end
 end
