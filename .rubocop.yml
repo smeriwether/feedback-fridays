@@ -11,3 +11,6 @@ RSpec/ExampleLength:
 Metrics/BlockLength:
   Exclude:
     - "spec/**/*"
+
+RSpec/MultipleExpectations:
+  Max: 5
