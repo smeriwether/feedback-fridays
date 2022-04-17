@@ -1,1 +1,8 @@
 <h1 data-attr="feedback-rotations">Feedback Rotations</h1>
+
+<% @feedback_rotations.each.with_index do |rotation_group, idx| %>
+  <% rotation_group.each do |rotation| %>
+    <span data-attr=<%= "feedback-rotations-#{idx}-giver" %>><%= rotation.feedback_giver %></span>
+    <span data-attr=<%= "feedback-rotations-#{idx}-receiver" %>><%= rotation.feedback_receiver %></span>
+  <% end %>
+<% end %>
