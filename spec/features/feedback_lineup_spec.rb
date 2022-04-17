@@ -57,4 +57,20 @@ RSpec.describe 'Navigates to the Feedback Lineup page', type: :feature do
 
     expect(FeedbackLineup.count).to eq(1)
   end
+
+  it 'navigates to the feedback rotation screen after verifying the feedback lineup' do
+    feedback_session = FeedbackSession.create(
+      {
+        feedback_session_teammates_attributes: [
+          { name: 'Example 1' },
+          { name: 'Example 2' }
+        ]
+      }
+    )
+    visit "/feedback_lineups/new/#{feedback_session.id}"
+
+    find("[data-attr='verify-feedback-lineup']").click
+
+    expect(page).to have_current_path(feedback_rotation_path(FeedbackLineup.last), ignore_query: true)
+  end
 end

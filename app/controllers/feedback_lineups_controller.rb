@@ -15,7 +15,8 @@ class FeedbackLineupsController < ApplicationController
   end
 
   def create
-    FeedbackLineup.create(feedback_lineup_params)
+    feedback_lineup = FeedbackLineup.create(feedback_lineup_params)
+    redirect_to feedback_rotation_path(feedback_lineup)
   end
 
   private
