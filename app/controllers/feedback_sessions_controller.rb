@@ -9,7 +9,12 @@ class FeedbackSessionsController < ApplicationController
 
   def create
     feedback_session = FeedbackSession.create(feedback_session_params)
-    redirect_to new_feedback_lineup_path(feedback_session)
+    if feedback_session.valid?
+      redirect_to new_feedback_lineup_path(feedback_session)
+    else
+      flash[:errors] = feedback_session.errors.full_messages
+      redirect_to new_feedback_session_path
+    end
   end
 
   private

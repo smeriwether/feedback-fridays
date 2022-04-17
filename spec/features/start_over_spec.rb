@@ -12,13 +12,13 @@ RSpec.describe 'Start over', type: :feature do
 
   context 'when on the lineup page' do
     it 'has a start over link' do
-      session = FeedbackSession.create
+      session = FactoryBot.create(:feedback_session_with_teammates)
       visit new_feedback_lineup_path(session)
       expect(page).to have_selector("[data-attr='start-over-link']")
     end
 
     it 'returns the user to the home page' do
-      session = FeedbackSession.create
+      session = FactoryBot.create(:feedback_session_with_teammates)
       visit new_feedback_lineup_path(session)
       find("[data-attr='start-over-link']").click
 

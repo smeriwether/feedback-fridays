@@ -28,4 +28,9 @@ RSpec.describe FeedbackSession do
     teammate = feedback_session.feedback_session_teammates.first
     expect(teammate.name).to eq('Example 1')
   end
+
+  it 'validates there are at least 2 teammates' do
+    feedback_session = described_class.create
+    expect(feedback_session).not_to be_valid
+  end
 end

@@ -2,4 +2,6 @@
 
 class FeedbackSessionTeammate < ApplicationRecord
   belongs_to :feedback_session
+
+  validates :name, presence: true
 end
