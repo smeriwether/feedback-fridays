@@ -81,6 +81,4 @@ test:
 #
 production:
   <<: *default
-  database: feedback_friday_production
-  username: feedback_friday
-  password: <%= ENV["FEEDBACK_FRIDAY_DATABASE_PASSWORD"] %>
+  url: <%= ENV['DATABASE_URL'] %>
