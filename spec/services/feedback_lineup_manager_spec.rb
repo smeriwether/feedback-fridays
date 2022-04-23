@@ -34,4 +34,32 @@ RSpec.describe FeedbackLineupManager do
 
     expect(protocol).to have_received(:lineup)
   end
+
+  # rubocop:disable RSpec/ExampleLength
+  it 'groups the the teammates from the randomized protocol' do
+    teammates = [
+      FeedbackSessionTeammate.new(name: 'Example 1'),
+      FeedbackSessionTeammate.new(name: 'Example 2'),
+      FeedbackSessionTeammate.new(name: 'Example 3')
+    ]
+    protocol = RandomLineupProtocol.new
+    allow(protocol).to receive(:lineup).and_return(
+      [
+        FeedbackSessionTeammate.new(name: 'Example 3'),
+        FeedbackSessionTeammate.new(name: 'Example 1'),
+        FeedbackSessionTeammate.new(name: 'Example 2')
+      ]
+    )
+
+    feedback_groups = described_class.new(teammates, protocol).group
+
+    expect(feedback_groups).to eq(
+      [
+        { giver: 'Example 3', receiver: 'Example 1' },
+        { giver: 'Example 1', receiver: 'Example 2' },
+        { giver: 'Example 2', receiver: 'Example 3' }
+      ]
+    )
+  end
+  # rubocop:enable RSpec/ExampleLength
 end

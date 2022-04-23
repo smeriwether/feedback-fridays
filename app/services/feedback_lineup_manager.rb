@@ -10,10 +10,10 @@ class FeedbackLineupManager
 
   def group
     lineup.map.with_index do |teammate, index|
-      next_up_index = teammates.length <= index + 1 ? 0 : index + 1
+      next_up_index = lineup.length <= index + 1 ? 0 : index + 1
       {
         giver: teammate.name,
-        receiver: teammates[next_up_index].name
+        receiver: lineup[next_up_index].name
       }
     end
   end
@@ -21,6 +21,6 @@ class FeedbackLineupManager
   private
 
   def lineup
-    lineup_protocol.lineup(teammates)
+    @lineup ||= lineup_protocol.lineup(teammates)
   end
 end
