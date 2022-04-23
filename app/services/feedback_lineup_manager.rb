@@ -3,7 +3,7 @@
 class FeedbackLineupManager
   attr_accessor :teammates, :lineup_protocol
 
-  def initialize(teammates, lineup_protocol = OrderedLineupProtocol.new)
+  def initialize(teammates, lineup_protocol = RandomLineupProtocol.new)
     self.teammates = teammates
     self.lineup_protocol = lineup_protocol
   end

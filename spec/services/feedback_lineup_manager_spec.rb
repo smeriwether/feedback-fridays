@@ -10,7 +10,7 @@ RSpec.describe FeedbackLineupManager do
       FeedbackSessionTeammate.new(name: 'Example 3')
     ]
 
-    feedback_groups = described_class.new(teammates).group
+    feedback_groups = described_class.new(teammates, OrderedLineupProtocol.new).group
 
     expect(feedback_groups).to eq(
       [
