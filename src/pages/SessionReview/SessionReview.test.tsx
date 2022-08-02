@@ -9,7 +9,7 @@ import { newFeedbackPairBuilder } from '../../models/FeedbackPair'
 describe('<SessionReview />', () => {
   it('has a header that describes whats going on', () => {
     render(<SessionReview />)
-    expect(screen.getByRole('heading', { name: 'Here\'s the lineup we came up with' })).toBeVisible()
+    expect(screen.getByRole('heading', { name: "Here's the lineup we came up with" })).toBeVisible()
   })
 
   it('has a button to create a new lineup', () => {

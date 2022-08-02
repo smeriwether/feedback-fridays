@@ -35,7 +35,7 @@ describe('encoding', () => {
 
       const decodedPairs = decodeFeedbackPairs(token)
 
-      pairs.map((p, idx) => {
+      pairs.forEach((p, idx) => {
         expect(p.giver.name).toEqual(decodedPairs[idx].giver.name)
         expect(p.receiver.name).toEqual(decodedPairs[idx].receiver.name)
       })

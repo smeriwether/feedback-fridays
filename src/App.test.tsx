@@ -50,7 +50,7 @@ describe('<App />', () => {
       fireEvent.click(generatePairsButton)
 
       expect(
-        screen.getByRole('heading', { name: 'Here\'s the lineup we came up with' }),
+        screen.getByRole('heading', { name: "Here's the lineup we came up with" }),
       ).toBeVisible()
     })
   })

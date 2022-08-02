@@ -14,7 +14,7 @@ describe('<Home />', () => {
   it('renders a form to add teammates who are participating', () => {
     render(<Home />)
 
-    expect(screen.getByRole('heading', { name: 'Who\'s on your team?' })).toBeVisible()
+    expect(screen.getByRole('heading', { name: "Who's on your team?" })).toBeVisible()
     expect(screen.getByRole('form', { name: 'Participating teammates form' })).toBeVisible()
   })
 
@@ -88,9 +88,7 @@ describe('<Home />', () => {
 
     it('only encodes teammates with names', () => {
       render(<Home />)
-      const encodedTeammateString = encodeTeammates([
-        newTeammateBuilder('Teammate 1'),
-      ])
+      const encodedTeammateString = encodeTeammates([newTeammateBuilder('Teammate 1')])
       const participatingTeammateInputs = screen.getAllByRole('textbox', { name: 'Teammate name' })
       fireEvent.change(participatingTeammateInputs[0], { target: { value: 'Teammate 1' } })
 
