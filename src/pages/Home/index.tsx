@@ -31,7 +31,7 @@ const Home = () => {
   }
 
   const startFeedbackSession = () => {
-    navigate('/explain/' + encodeTeammates(participatingTeammates))
+    navigate('/explain/' + encodeTeammates(participatingTeammates.filter(t => t.name)))
   }
 
   return (

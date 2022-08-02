@@ -85,5 +85,19 @@ describe('<Home />', () => {
 
       expect(navigate).toHaveBeenCalledWith('/explain/' + encodedTeammateString)
     })
+
+    it('only encodes teammates with names', () => {
+      render(<Home />)
+      const encodedTeammateString = encodeTeammates([
+        newTeammateBuilder('Teammate 1'),
+      ])
+      const participatingTeammateInputs = screen.getAllByRole('textbox', { name: 'Teammate name' })
+      fireEvent.change(participatingTeammateInputs[0], { target: { value: 'Teammate 1' } })
+
+      const startFeedbackButton = screen.getByRole('button', { name: 'Start Feedback Session' })
+      fireEvent.click(startFeedbackButton)
+
+      expect(navigate).toHaveBeenCalledWith('/explain/' + encodedTeammateString)
+    })
   })
 })
